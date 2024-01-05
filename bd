@@ -1,0 +1,20 @@
+create table public.clienteencu(
+clienteid SERIAL PRIMARY KEY,
+ cliente VARCHAR(2000),
+    proyecto_servicio VARCHAR(2000),
+    contacto VARCHAR(2000) ,
+    cargo VARCHAR(2000) ,
+	fecha DATE DEFAULT CURRENT_DATE,
+    pregunta1 VARCHAR(2000) ,
+    pregunta2 VARCHAR(2000) ,
+	pregunta3 VARCHAR(2000) ,
+	pregunta4 VARCHAR(2000) ,
+	pregunta5 VARCHAR(2000) ,
+	pregunta6 VARCHAR(2000) ,
+	pregunta7 VARCHAR(2000) ,
+	pregunta8 VARCHAR(2000) ,
+	pregunta9 VARCHAR(2000) ,
+	pregunta10 VARCHAR(2000) ,
+	comentario_recomendacion VARCHAR(2000) 
+	);
+select * from clienteencu
