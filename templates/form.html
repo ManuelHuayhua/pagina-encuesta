@@ -1,196 +1,150 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario</title>
+    <title>Formulario de Encuesta</title>
 
-    <!-- Agrega las siguientes líneas para incluir Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Agregar las referencias a Bootstrap y jQuery -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <!-- Agrega SweetAlert2 -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Agregar el script para validar los campos en tiempo real -->
+    <!-- Agregar el script para validar los campos en tiempo real -->
+    <!-- Agregar el script para validar los campos en tiempo real -->
+    <script>
+        $(document).ready(function(){
+            $('form input[type="number"]').on('input', function(){
+                var isEmpty = $(this).val() == "";
+                var isValidNumber = /^\d+$/.test($(this).val()) && parseInt($(this).val()) >= 2 && parseInt($(this).val()) <= 10;
+
+                $(this).toggleClass('is-invalid', isEmpty || !isValidNumber);
+                $(this).toggleClass('is-valid', !isEmpty && isValidNumber);
+
+                var feedbackMessage = isValidNumber ? "¡Bien hecho!" : "Ingresa un número entre 2 y 10.";
+                $(this).siblings('.invalid-feedback').text(feedbackMessage);
+            });
+        });
+    </script>
 </head>
 <body>
     <div class="container mt-5">
         <h1 class="mb-4" style="text-align: center;">DATOS DE CLIENTE</h1>
-        <form method="POST" action="/insertar" class="needs-validation" novalidate>
+        <form action="/insertar" method="post">
 
-            <!-- Cliente -->
-            <div class="mb-3">
-                <label for="cliente" class="form-label">Cliente:</label>
-                <input type="text" class="form-control" name="cliente" required>
-                <div class="invalid-feedback">
-                    Campo requerido
-                </div>
+            <div class="form-group">
+                <label for="cliente">Cliente:</label>
+                <input type="text" name="cliente" class="form-control" required>
+                <div class="invalid-feedback">Este campo es obligatorio.</div>
+                <div class="valid-feedback">¡Bien hecho!</div>
             </div>
 
-            <!-- Proyecto/Servicio -->
-            <div class="mb-3">
-                <label for="proyecto_servicio" class="form-label">Proyecto/Servicio:</label>
-                <input type="text" class="form-control" name="proyecto_servicio" required>
-                <div class="invalid-feedback">
-                    Campo requerido
-                </div>
+            <div class="form-group">
+                <label for="proyecto_servicio">Proyecto/Servicio:</label>
+                <input type="text" name="proyecto_servicio" class="form-control" required>
+                <div class="invalid-feedback">Este campo es obligatorio.</div>
+                <div class="valid-feedback">¡Bien hecho!</div>
             </div>
 
-            <!-- Contacto -->
-            <div class="mb-3">
-                <label for="contacto" class="form-label">Contacto:</label>
-                <input type="text" class="form-control" name="contacto" required>
-                <div class="invalid-feedback">
-                    Campo requerido
-                </div>
+            <div class="form-group">
+                <label for="contacto">Contacto:</label>
+                <input type="text" name="contacto" class="form-control" required>
+                <div class="invalid-feedback">Este campo es obligatorio.</div>
+                <div class="valid-feedback">¡Bien hecho!</div>
             </div>
 
-            <!-- Cargo -->
-            <div class="mb-3">
-                <label for="cargo" class="form-label">Cargo:</label>
-                <input type="text" class="form-control" name="cargo" required>
-                <div class="invalid-feedback">
-                    Campo requerido
-                </div>
+            <div class="form-group">
+                <label for="cargo">Cargo:</label>
+                <input type="text" name="cargo" class="form-control" required>
+                <div class="invalid-feedback">Este campo es obligatorio.</div>
+                <div class="valid-feedback">¡Bien hecho!</div>
+            </div>
+            <h1 class="mb-4" style="text-align: center;">DATOS DE CLIENTE</h1>
+            <div class="form-group">
+                <label for="pregunta1">Estuvo informado sobre el estado del servicio en todas las etapas.:</label>
+                <input type="number" name="pregunta1" class="form-control" required>
+                <div class="invalid-feedback">Ingresa un número entre 2 y 10.</div>
+                <div class="valid-feedback">¡Bien hecho!</div>
             </div>
 
-            <!-- Repite este bloque para los demás campos del formulario -->
-
-            <h1 class="mb-4" style="text-align: center;">ASPECTOS A EVALUAR</h1>
-            <br>
-                
-            <h3>Califique de 2 a 10 puntos los siguientes aspectos</h3>
-            <br>
-                
-            <!-- Repite el siguiente bloque para cada pregunta -->
-            <div class="mb-3">
-                <label for="pregunta1" class="form-label">Estuvo informado sobre el estado del servicio en todas las etapas.:</label>
-                <input type="number" class="form-control" name="pregunta1" required min="2" max="10">
-                <div class="invalid-feedback">
-                    Ingrese una calificación válida entre 2 y 10.
-                </div>
+            <div class="form-group">
+                <label for="pregunta2">En la presencia de trabajos de emergencia, problemas, dudas, consultas o inquietudes se tuvo rapidez en la solución.:</label>
+                <input type="number" name="pregunta2" class="form-control" required>
+                <div class="invalid-feedback">Ingresa un número entre 2 y 10.</div>
+                <div class="valid-feedback">¡Bien hecho!</div>
             </div>
 
-            <div class="mb-3">
-                <label for="pregunta2" class="form-label">En la presencia de trabajos de emergencia, problemas, dudas, consultas o inquietudes se tuvo rapidez en la solución. :</label>
-                <input type="number" class="form-control" name="pregunta2" required min="2" max="10">
-            </div>
-            
-            <!-- Repite el bloque anterior para las preguntas 3 a 10 -->
-            
-            <div class="mb-3">
-                <label for="pregunta3" class="form-label">El responsable mostró conocimientos suficientes para la ejecución del servicio.:</label>
-                <input type="number" class="form-control" name="pregunta3" required min="2" max="10">
-            </div>
-            
-            <div class="mb-3">
-                <label for="pregunta4" class="form-label">El personal demostró puntualidad para la realización de sus labores:</label>
-                <input type="number" class="form-control" name="pregunta4" required min="2" max="10">
-            </div>
-            
-            <div class="mb-3">
-                <label for="pregunta5" class="form-label">Se contó oportunamente con los recursos,equipos,herramientas y materiales.:</label>
-                <input type="number" class="form-control" name="pregunta5" required min="2" max="10">
-            </div>
-            
-            <div class="mb-3">
-                <label for="pregunta6" class="form-label">Se contó con personal calificado para la prestación del servicio.:</label>
-                <input type="number" class="form-control" name="pregunta6" required min="2" max="10">
-            </div>
-            
-            <div class="mb-3">
-                <label for="pregunta7" class="form-label">El desempeño en HSEC del personal fue adecuado.:</label>
-                <input type="number" class="form-control" name="pregunta7" required min="2" max="10">
-            </div>
-            
-            <div class="mb-3">
-                <label for="pregunta8" class="form-label">El servicio prestado tuvo la calidad y garantia esperada.:</label>
-                <input type="number" class="form-control" name="pregunta8" required min="2" max="10">
-            </div>
-            
-            <div class="mb-3">
-                <label for="pregunta9" class="form-label">Presupuestos claros y competitivos de acuerdo al mercado.:</label>
-                <input type="number" class="form-control" name="pregunta9" required min="2" max="10">
-            </div>
-            
-            <div class="mb-3">
-                <label for="pregunta10" class="form-label">Se le trató siempre con cortesía y respeto.:</label>
-                <input type="number" class="form-control" name="pregunta10" required min="2" max="10">
+            <div class="form-group">
+                <label for="pregunta3">El responsable mostró conocimientos suficientes para la ejecución del servicio.</label>
+                <input type="number" name="pregunta3" class="form-control" required>
+                <div class="invalid-feedback">Ingresa un número entre 2 y 10.</div>
+                <div class="valid-feedback">¡Bien hecho!</div>
             </div>
 
-            <div class="mb-3">
-                <label for="comentario_recomendacion" class="form-label">Comentario/Recomendación:</label>
-                <textarea class="form-control" name="comentario_recomendacion" rows="4" required></textarea>
-                <div class="invalid-feedback">
-                    Ingrese un comentario/recomendación.
-                </div>
+            <div class="form-group">
+                <label for="pregunta4">El personal demostró puntualidad para la realización de sus labores</label>
+                <input type="number" name="pregunta4" class="form-control" required>
+                <div class="invalid-feedback">Ingresa un número entre 2 y 10.</div>
+                <div class="valid-feedback">¡Bien hecho!</div>
             </div>
-            <br>
-            <br>
-            <br>
 
-            <button type="button" class="btn btn-primary" onclick="enviarFormulario()">Enviar Formulario</button>
+            <div class="form-group">
+                <label for="pregunta5">Se contó oportunamente con los recursos,equipos,herramientas y materiales.</label>
+                <input type="number" name="pregunta5" class="form-control" required>
+                <div class="invalid-feedback">Ingresa un número entre 2 y 10.</div>
+                <div class="valid-feedback">¡Bien hecho!</div>
+            </div>
 
+            <div class="form-group">
+                <label for="pregunta6">Se contó con personal calificado para la prestación del servicio.</label>
+                <input type="number" name="pregunta6" class="form-control" required>
+                <div class="invalid-feedback">Ingresa un número entre 2 y 10.</div>
+                <div class="valid-feedback">¡Bien hecho!</div>
+            </div>
+
+            <div class="form-group">
+                <label for="pregunta7">El desempeño en HSEC del personal fue adecuado.</label>
+                <input type="number" name="pregunta7" class="form-control" required>
+                <div class="invalid-feedback">Ingresa un número entre 2 y 10.</div>
+                <div class="valid-feedback">¡Bien hecho!</div>
+            </div>
+
+            <div class="form-group">
+                <label for="pregunta8">El servicio prestado tuvo la calidad y garantia esperada.</label>
+                <input type="number" name="pregunta8" class="form-control" required>
+                <div class="invalid-feedback">Ingresa un número entre 2 y 10.</div>
+                <div class="valid-feedback">¡Bien hecho!</div>
+            </div>
+
+            <div class="form-group">
+                <label for="pregunta9">Presupuestos claros y competitivos de acuerdo al mercado.</label>
+                <input type="number" name="pregunta9" class="form-control" required>
+                <div class="invalid-feedback">Ingresa un número entre 2 y 10.</div>
+                <div class="valid-feedback">¡Bien hecho!</div>
+            </div>
+
+            <div class="form-group">
+                <label for="pregunta10">Se le trató siempre con cortesía y respeto.</label>
+                <input type="number" name="pregunta10" class="form-control" required>
+                <div class="invalid-feedback">Ingresa un número entre 2 y 10.</div>
+                <div class="valid-feedback">¡Bien hecho!</div>
+            </div>
+
+            <div class="form-group">
+                <label for="comentario_recomendacion">Comentario/Recomendación:</label>
+                <textarea name="comentario_recomendacion" class="form-control" rows="4" required></textarea>
+                <div class="invalid-feedback">Este campo es obligatorio.</div>
+                <div class="valid-feedback">¡Bien hecho!</div>
+            </div>
+
+
+            <button type="submit" class="btn btn-primary">Enviar</button>
         </form>
+
+        
     </div>
-
-    <script>
-        // Script para deshabilitar la validación de Bootstrap por defecto
-        (function () {
-            'use strict';
-
-            // Selecciona todos los formularios a los que se les aplicará la validación de Bootstrap
-            var forms = document.querySelectorAll('.needs-validation');
-
-            // Itera sobre cada formulario y deshabilita la validación nativa de Bootstrap
-            Array.from(forms).forEach(function (form) {
-                form.addEventListener('submit', function (event) {
-                    if (!form.checkValidity()) {
-                        event.preventDefault();
-                        event.stopPropagation();
-                    }
-
-                    form.classList.add('was-validated');
-                }, false);
-            });
-        })();
-
-        // Función para enviar el formulario y mostrar notificación
-        // Función para enviar el formulario y mostrar notificación
-        function enviarFormulario() {
-    var form = document.querySelector('.needs-validation');
-    
-    if (form.checkValidity()) {
-        var formData = new FormData(form);
-
-        // Deshabilitar el botón temporalmente para evitar múltiples envíos
-        document.querySelector('button[type="button"]').setAttribute('disabled', 'true');
-
-        // Enviar formulario usando AJAX
-        fetch('/insertar', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => {
-            if (response.ok) {
-                // Limpiar formulario
-                form.reset();
-
-                // Redirigir a la página de éxito
-                window.location.href = '/exito';
-            } else {
-                throw new Error('Error al enviar el formulario');
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        })
-        .finally(() => {
-            // Habilitar el botón después de completar la operación
-            document.querySelector('button[type="button"]').removeAttribute('disabled');
-        });
-    }
-}
-    </script>
 </body>
+
 </html>

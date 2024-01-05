@@ -49,7 +49,7 @@ def insertar():
 
         connection.commit()
 
-        return redirect('/')
+        return redirect('/exito')
     except Exception as ex:
         print("Error al procesar la solicitud:", ex)
         return "Hubo un error al procesar la solicitud."
@@ -58,9 +58,11 @@ def insertar():
             connection.close()
 
 
+
 @app.route('/exito')
 def exito():
     return render_template('exito.html')
+            
 
 if __name__ == '__main__':
     app.run(debug=True)
