@@ -30,8 +30,20 @@
     </script>
 </head>
 <body>
+    
+    <div class="encabezado" style="position: relative;">
+        <img src="https://sequitecsa.com/wp-content/uploads/2023/07/logo.png" alt="Cliente Emoji" style="position: absolute; top: 10px; left: 20px; width: 200px; height: 50px;">
+        <h2 class="mb-4" style="text-align: center; margin-top: 40px;"> ENCUESTA DE SATISFACCIÓN DEL CLIENTE </h2>
+        
+    </div>
+            <h1 class="mb-4" style="text-align: center;">👤 </h1>
+        </div>
+        
+        
+
     <div class="container mt-5">
-        <h1 class="mb-4" style="text-align: center;">DATOS DE CLIENTE</h1>
+        
+        <h4 class="mb-4" style="font-family: 'Arial', sans-serif; color: #333;">DATOS DE CLIENTE:</h4   >
         <form action="/insertar" method="post">
 
             <div class="form-group">
@@ -61,16 +73,22 @@
                 <div class="invalid-feedback">Este campo es obligatorio.</div>
                 <div class="valid-feedback">¡Bien hecho!</div>
             </div>
-            <h1 class="mb-4" style="text-align: center;">ENCUESTA DE SATISFACCIÓN</h1>
+            <br>
+            <br>
+            <h4 class="mb-4" style="font-family: 'Arial', sans-serif; color: #333;">ENCUESTA DE SATISFACCIÓN:</h4>
+            <h6 style="color: #f00; font-weight: bold;">Colocar números del 2 al 10</h6>
+            <h6 style="color: #f00; font-weight: bold;">siendo 2 el mas bajo y 10 el mas alto</h6>
+            
+            <br>
             <div class="form-group">
-                <label for="pregunta1">Estuvo informado sobre el estado del servicio en todas las etapas.:</label>
+                <label for="pregunta1">Estuvo informado sobre el estado del servicio en todas las etapas.</label>
                 <input type="number" name="pregunta1" class="form-control" required>
                 <div class="invalid-feedback">Ingresa un número entre 2 y 10.</div>
                 <div class="valid-feedback">¡Bien hecho!</div>
             </div>
 
             <div class="form-group">
-                <label for="pregunta2">En la presencia de trabajos de emergencia, problemas, dudas, consultas o inquietudes se tuvo rapidez en la solución.:</label>
+                <label for="pregunta2">En la presencia de trabajos de emergencia, problemas, dudas, consultas o inquietudes se tuvo rapidez en la solución.</label>
                 <input type="number" name="pregunta2" class="form-control" required>
                 <div class="invalid-feedback">Ingresa un número entre 2 y 10.</div>
                 <div class="valid-feedback">¡Bien hecho!</div>
@@ -84,7 +102,7 @@
             </div>
 
             <div class="form-group">
-                <label for="pregunta4">El personal demostró puntualidad para la realización de sus labores</label>
+                <label for="pregunta4">El personal demostró puntualidad para la realización de sus labores.</label>
                 <input type="number" name="pregunta4" class="form-control" required>
                 <div class="invalid-feedback">Ingresa un número entre 2 y 10.</div>
                 <div class="valid-feedback">¡Bien hecho!</div>
@@ -146,5 +164,24 @@
         
     </div>
 </body>
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f5f5f5; /* Color de fondo suave */
+        margin: 0;
+        padding: 20px;
+    }
+
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Agrega estilos adicionales según tus preferencias */
+</style>
 
 </html>
